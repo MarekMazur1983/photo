@@ -14,8 +14,18 @@ namespace pastephoto
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "save",
+                url: "save/{id}",
+                defaults: new { controller = "Home", action = "Save", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+               name: "upload",
+               url: "upload/{id}",
+               defaults: new { controller = "Home", action = "Uploadfile", id = UrlParameter.Optional }
+           );
+            routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
+                url: "{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }

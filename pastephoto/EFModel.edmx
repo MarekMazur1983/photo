@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="pastephotoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="gallery">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar(max)" Nullable="false" />
+          <Property Name="deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pastephoto" Type="int" Nullable="false" />
+          <Property Name="filename" Type="varchar(max)" Nullable="false" />
+          <Property Name="comment" Type="varchar(max)" />
+          <Property Name="commented_by" Type="varchar(max)" />
+          <Property Name="selected" Type="bit" />
+          <Property Name="rate" Type="int" />
+        </EntityType>
+        <EntityType Name="pastephoto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="guid" Type="varchar(max)" />
+          <Property Name="settings" Type="varchar(max)" />
+          <Property Name="lifetime" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_image_pastephoto">
+          <End Role="pastephoto" Type="Self.pastephoto" Multiplicity="1" />
+          <End Role="image" Type="Self.image" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="pastephoto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="image">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="pastephotoModelStoreContainer">
+          <EntitySet Name="gallery" EntityType="Self.gallery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="image" EntityType="Self.image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pastephoto" EntityType="Self.pastephoto" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_image_pastephoto" Association="Self.FK_image_pastephoto">
+            <End Role="pastephoto" EntitySet="pastephoto" />
+            <End Role="image" EntitySet="image" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="pastephotoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="gallery">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="deleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_pastephoto" Type="Int32" Nullable="false" />
+          <Property Name="filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="commented_by" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="selected" Type="Boolean" />
+          <Property Name="rate" Type="Int32" />
+          <NavigationProperty Name="pastephoto" Relationship="Self.FK_image_pastephoto" FromRole="image" ToRole="pastephoto" />
+        </EntityType>
+        <EntityType Name="pastephoto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="guid" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="settings" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="lifetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="image" Relationship="Self.FK_image_pastephoto" FromRole="pastephoto" ToRole="image" />
+        </EntityType>
+        <Association Name="FK_image_pastephoto">
+          <End Role="pastephoto" Type="Self.pastephoto" Multiplicity="1" />
+          <End Role="image" Type="Self.image" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="pastephoto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="image">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="pastephotoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="gallery" EntityType="Self.gallery" />
+          <EntitySet Name="image" EntityType="Self.image" />
+          <EntitySet Name="pastephoto" EntityType="Self.pastephoto" />
+          <AssociationSet Name="FK_image_pastephoto" Association="Self.FK_image_pastephoto">
+            <End Role="pastephoto" EntitySet="pastephoto" />
+            <End Role="image" EntitySet="image" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="pastephotoModelStoreContainer" CdmEntityContainer="pastephotoEntities">
+          <EntitySetMapping Name="gallery">
+            <EntityTypeMapping TypeName="pastephotoModel.gallery">
+              <MappingFragment StoreEntitySet="gallery">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="image">
+            <EntityTypeMapping TypeName="pastephotoModel.image">
+              <MappingFragment StoreEntitySet="image">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_pastephoto" ColumnName="id_pastephoto" />
+                <ScalarProperty Name="filename" ColumnName="filename" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="commented_by" ColumnName="commented_by" />
+                <ScalarProperty Name="selected" ColumnName="selected" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pastephoto">
+            <EntityTypeMapping TypeName="pastephotoModel.pastephoto">
+              <MappingFragment StoreEntitySet="pastephoto">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="guid" ColumnName="guid" />
+                <ScalarProperty Name="settings" ColumnName="settings" />
+                <ScalarProperty Name="lifetime" ColumnName="lifetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

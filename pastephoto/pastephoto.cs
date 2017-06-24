@@ -18,6 +18,7 @@ namespace pastephoto
         public string guid { get; set; }
         public string settings { get; set; }
         public Nullable<System.DateTime> lifetime { get; set; }
+        public Nullable<System.DateTime> added { get; set; }
     
         public virtual image image { get; set; }
     }

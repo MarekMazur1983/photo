@@ -189,6 +189,8 @@
     <Compile Include="image.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Logic\Businesslogic.cs" />
+    <Compile Include="Models\Pastephoto.cs" />
     <Compile Include="pastephoto.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
@@ -265,7 +267,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

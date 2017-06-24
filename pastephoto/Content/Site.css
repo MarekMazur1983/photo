@@ -6,11 +6,11 @@
 }
 form {
     margin-top: 30px;
-    background: #222222 !important;
+    background: rgba(66, 139, 202, 0.26) !important;
     border: #b94848 dashed 3px !important;
     padding: 50px !important;
     text-align: center !important;
-    color: white !important;
+    color: #b94a48 !important;
 }
 .dz-image{
     border-radius:5px !important;

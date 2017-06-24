@@ -9,4 +9,6 @@ $(document).ready(function () {
         }
     };
 });
+class Test {
+}
 //# sourceMappingURL=test.js.map

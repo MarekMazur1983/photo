@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="pastephotoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="pastephotoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="gallery">
           <Key>
             <PropertyRef Name="id" />
@@ -33,6 +33,7 @@
           <Property Name="guid" Type="varchar(max)" />
           <Property Name="settings" Type="varchar(max)" />
           <Property Name="lifetime" Type="datetime" />
+          <Property Name="added" Type="datetime" />
         </EntityType>
         <Association Name="FK_image_pastephoto">
           <End Role="pastephoto" Type="Self.pastephoto" Multiplicity="1" />
@@ -55,8 +56,7 @@
             <End Role="image" EntitySet="image" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="pastephotoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -90,6 +90,7 @@
           <Property Name="settings" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="lifetime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="image" Relationship="Self.FK_image_pastephoto" FromRole="pastephoto" ToRole="image" />
+          <Property Name="added" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_image_pastephoto">
           <End Role="pastephoto" Type="Self.pastephoto" Multiplicity="1" />
@@ -143,6 +144,7 @@
           <EntitySetMapping Name="pastephoto">
             <EntityTypeMapping TypeName="pastephotoModel.pastephoto">
               <MappingFragment StoreEntitySet="pastephoto">
+                <ScalarProperty Name="added" ColumnName="added" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="guid" ColumnName="guid" />
                 <ScalarProperty Name="settings" ColumnName="settings" />

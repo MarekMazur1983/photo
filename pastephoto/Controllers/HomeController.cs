@@ -1,4 +1,5 @@
-﻿using System;
+﻿using pastephoto.Logic;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,7 +12,15 @@ namespace pastephoto.Controllers
     {
         public ActionResult Index(string id)
         {
-            
+            if (id == null)
+            {
+                Businesslogic bl = new Businesslogic();
+                string guid = bl.GetGuid();
+                ViewBag.guid = guid;
+              
+                return View();
+            }
+             
 
             return View("Index");
         }

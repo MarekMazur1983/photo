@@ -1,13 +1,13 @@
-﻿.logo-img{
-    width:591px;
-    height:145px;
-    margin-left:auto;
-    margin-right:auto;
+﻿.logo-img {
+    width: 591px;
+    height: 124px;
+    margin-left: auto;
+    margin-right: auto;
 }
 form {
     margin-top: 30px;
-    background: rgba(66, 139, 202, 0.26) !important;
-    border: #b94848 dashed 3px !important;
+    background: rgb(16, 16, 16) !important;
+    border: #316e84 dashed 3px !important;
     padding: 50px !important;
     text-align: center !important;
     color: #b94a48 !important;
@@ -15,4 +15,24 @@ form {
 .dz-image{
     border-radius:5px !important;
     border:5px solid white;
+}
+#settings-panel {
+    font-size: 18px;
+    padding: 20px!important;
+    background-color: #2C2F34 !important;
+    color: white !important;
+} 
+#settings-panel input[type=checkbox] {
+    transform: scale(1.5);
+    
+}
+#settings-panel .panel-footer {
+        background-color: #2C2F34 !important;
+}
+
+#settings-panel .btn-success{
+    width:150px !important;
+}
+.short50 {
+    width: 50% !important;
 }

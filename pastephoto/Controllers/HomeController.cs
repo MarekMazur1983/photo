@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace pastephoto.Controllers
 {
+    //https://stackoverflow.com/questions/12870137/automatically-add-watermark-to-an-image
     public class HomeController : Controller
     {
         public ActionResult Index(string id)
@@ -15,12 +16,16 @@ namespace pastephoto.Controllers
             if (id == null)
             {
                 Businesslogic bl = new Businesslogic();
-                string guid = bl.GetGuid();
-                ViewBag.guid = guid;
-              
+                ViewBag.guid = bl.GetGuid();
+                var x = bl.GetGalleryType();
+                
+                ViewBag.gallery =bl.GetGalleryType();
                 return View();
             }
-             
+            else
+            {
+
+            } 
 
             return View("Index");
         }

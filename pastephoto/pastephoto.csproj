@@ -190,6 +190,7 @@
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Logic\Businesslogic.cs" />
+    <Compile Include="Models\Gallery.cs" />
     <Compile Include="Models\Pastephoto.cs" />
     <Compile Include="pastephoto.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
@@ -247,7 +248,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <TypeScriptCompile Include="Scripts\application\test.ts" />
+    <TypeScriptCompile Include="Scripts\application\application.ts" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

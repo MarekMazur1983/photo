@@ -9,6 +9,14 @@
     @Scripts.Render("~/bundles/application")
     @Scripts.Render("~/bundles/bootstrap")
  
+    <style>
+        body {
+            background-color: #141518;
+        }
+        .panel {
+            border: 1px solid #101010 !important;
+        }
+    </style>
 </head>
 <body id="@ViewBag.guid">
     <nav class="navbar navbar-inverse ">
@@ -27,6 +35,48 @@
                 <input name="file" type="file" multiple />
             </div>
         </form>
+        <div id="settings-panel" style="display:none" class="panel panel-default">
+           
+            <div class="panel-body">
+                <label>Choose your gallery </label>
+                <select id="select-gallery">
+                    @for (var i = 0; i < ViewBag.gallery.Count; i++)
+                     {
+                        <option value="@ViewBag.gallery[i].id">@ViewBag.gallery[i].name</option>
+                    }
+                </select>
+                <div class="checkbox">
+                    <label ><input id="cb-password" type="checkbox" value="">Add password</label>
+                </div>
+                <input style="display:none" id="text-password" type="text" class="form-control short50" placeholder="Password">
+                <div class="checkbox">
+                    <label><input id="cb-lifetime" type="checkbox" value="">Limit gallery lifetime</label>
+                </div>
+                <input  style="display:none" id="text-lifetime" type="text" class="form-control short50" placeholder="In days">
+                <div class="checkbox">
+                    <label><input id="cb-watermark" type="checkbox" value="">Add watermark</label>
+                </div>
+                <input style="display:none" name="file" type="file" />
+                
+                <div class="checkbox">
+                    <label><input id="cb-select" type="checkbox" value="">Allow select</label>
+                </div>
+                <input style="display:none" type="text" id="text-select" class="form-control short50" placeholder="Maximal number of selected images">
+                <div class="checkbox">
+                    <label><input id="cb-comments" type="checkbox" value="">Allow comments</label>
+                </div>
+                <div class="checkbox">
+                    <label><input id="cb-ratings" type="checkbox" value="">Allow ratings</label>
+                </div>
+                <div class="checkbox">
+                    <label><input id="cb-fb" type="checkbox" value="">Allow Facebook share</label>
+                </div>
+            </div>
+            <div class="panel-footer"><button type="button" class="btn btn-success">Save</button></div>
+        </div>
+        
+
+
     </div><!-- /.container -->
    
 </body>

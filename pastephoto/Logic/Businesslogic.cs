@@ -30,7 +30,11 @@ namespace pastephoto.Logic
             }
             return guid;
         }
-
+        public List<gallery> GetGalleryType()
+        {
+            Models.Gallery g = new Models.Gallery(this.db);
+            return g.List();
+        }
 
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Communication {
     export class Comm {
-        public static Send(message: any, modeasync: any, url: string, dataType: string): any {
+        public static Send(message: any, modeasync: boolean, url: string, dataType: string): any {
             var toJsonString = JSON.stringify(message);
             var res = null;
             $.ajax
@@ -22,7 +22,7 @@
         }
     }
     export class URLCONST {
-        public static SERVICEBROKER: string = document.location.origin + "/Home/Save/";
+        public static SAVE: string = document.location.origin + "/save/";
 
     };
 }

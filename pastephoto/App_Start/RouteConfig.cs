@@ -15,7 +15,7 @@ namespace pastephoto
 
             routes.MapRoute(
                 name: "save",
-                url: "save/{id}",
+                url: "save",
                 defaults: new { controller = "Home", action = "Save", id = UrlParameter.Optional }
             );
             routes.MapRoute(

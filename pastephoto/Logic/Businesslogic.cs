@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using pastephoto.Logic.Message;
+using Newtonsoft.Json;
 
 namespace pastephoto.Logic
 {
@@ -9,6 +11,7 @@ namespace pastephoto.Logic
     {
         private pastephotoEntities db = new pastephotoEntities();
         private static Object objTo_lock = new Object();
+
         public string GetGuid()
         {
             string guid;
@@ -35,6 +38,28 @@ namespace pastephoto.Logic
             Models.Gallery g = new Models.Gallery(this.db);
             return g.List();
         }
-
+        public Response SaveSettings(string settings)
+        {
+            Response res = new Response();
+            
+            Settings settingsObj;
+            try
+            {
+                
+                settingsObj = JsonConvert.DeserializeObject<Settings>(settings);
+                pastephoto pp = db.pastephoto.Where(p => p.guid == settingsObj.guid).First();
+                pp.lifetime = settingsObj.lifetime;
+                pp.settings = settings;
+                db.SaveChanges();
+                res.status = Status.OK;
+            }
+            catch(Exception ex)
+            {
+                res.status = Status.ERROR;
+                res.error = ex.Message;
+            }
+            return res;
+         
+        }
     }
 }

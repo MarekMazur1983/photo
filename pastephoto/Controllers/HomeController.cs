@@ -78,9 +78,13 @@ namespace pastephoto.Controllers
                 return Json(new { Message = "Error in saving file" });
             }
         }
-        public ActionResult Save(string id)
+        public ActionResult Save()
         {
-            return null;
+            var settings = Request["json"];
+            Businesslogic bl = new Businesslogic();
+            var res =bl.SaveSettings(settings);
+            return Content(Newtonsoft.Json.JsonConvert.SerializeObject(res));
+          
         }
     }
 }

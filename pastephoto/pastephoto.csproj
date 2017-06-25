@@ -190,6 +190,7 @@
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Logic\Businesslogic.cs" />
+    <Compile Include="Logic\Data.cs" />
     <Compile Include="Models\Gallery.cs" />
     <Compile Include="Models\Pastephoto.cs" />
     <Compile Include="pastephoto.cs">
@@ -218,6 +219,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <TypeScriptCompile Include="Scripts\application\comm.ts" />
+    <TypeScriptCompile Include="Scripts\application\data.ts" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

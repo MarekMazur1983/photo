@@ -15,13 +15,17 @@ class Application {
         this.cb_comments = $('#cb-comments');
         this.cb_ratings = $('#cb-ratings');
         this.cb_fb = $('#cb-ratings');
+        this.saveBtn = $(".panel-footer button");
+        this.guid = $('body').attr('id');
         this.settings_panel.slideDown(500);
         this.addCheckboxOnChange(this.cb_password, this.text_password);
         this.addCheckboxOnChange(this.cb_lifetime, this.text_lifetime);
         this.addCheckboxOnChange(this.cb_select, this.text_select);
+        this.saveBtn.click(() => { this.save(); });
     }
     getValues() {
         var settings = new Settings();
+        settings.guid = this.guid;
         settings.gallery = this.select_gallery.find('option:selected').val();
         settings.select = parseInt(this.text_select.val());
         settings.password = this.text_password.val();
@@ -34,9 +38,22 @@ class Application {
         settings.isRatings = this.cb_ratings.is(':checked');
         settings.isWatermark = this.cb_watermark.is(':checked');
         settings.isSelect = this.cb_select.is(':checked');
+        return settings;
     }
-    addClickEvent(target, callback) {
-        target.click(callback);
+    checkValues() {
+    }
+    save() {
+        var values = this.getValues();
+        this.checkValues();
+        var res = Communication.Comm.Send(values, false, Communication.URLCONST.SAVE, "html");
+        if (res.status == Communication.Status.OK) {
+            this.saveBtn.remove();
+            this.settings_panel.find(".panel-footer").append(this.getRedirectLink());
+        }
+    }
+    getRedirectLink() {
+        var link = $("<label>Link to your gallery: &nbsp;</label><a href='" + document.location.origin + "/" + this.guid + "'>" + document.location.origin + "/" + this.guid + "</a>");
+        return link;
     }
     addCheckboxOnChange(src, target) {
         src.on('change', function () {

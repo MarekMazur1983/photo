@@ -23,7 +23,7 @@ var Communication;
     Communication.Comm = Comm;
     class URLCONST {
     }
-    URLCONST.SERVICEBROKER = document.location.origin + "/Home/Save/";
+    URLCONST.SAVE = document.location.origin + "/save/";
     Communication.URLCONST = URLCONST;
     ;
 })(Communication || (Communication = {}));

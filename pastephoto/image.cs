@@ -15,13 +15,11 @@ namespace pastephoto
     public partial class image
     {
         public int id { get; set; }
-        public int id_pastephoto { get; set; }
         public string filename { get; set; }
         public string comment { get; set; }
         public string commented_by { get; set; }
         public Nullable<bool> selected { get; set; }
         public Nullable<int> rate { get; set; }
-    
-        public virtual pastephoto pastephoto { get; set; }
+        public string guid { get; set; }
     }
 }

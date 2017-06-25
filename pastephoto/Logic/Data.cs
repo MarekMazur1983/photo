@@ -8,6 +8,7 @@ namespace pastephoto.Logic.Message
     public class Settings
     {
         public string guid { get; set; }
+        public string name { get; set; }
         public string gallery { get; set; }
         public int? select { get; set; }
         public string password { get; set; }

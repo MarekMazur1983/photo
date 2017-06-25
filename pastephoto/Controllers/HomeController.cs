@@ -13,17 +13,21 @@ namespace pastephoto.Controllers
     {
         public ActionResult Index(string id)
         {
+            Businesslogic bl = new Businesslogic();
             if (id == null)
             {
-                Businesslogic bl = new Businesslogic();
                 ViewBag.guid = bl.GetGuid();
                 var x = bl.GetGalleryType();
-                
                 ViewBag.gallery =bl.GetGalleryType();
                 return View();
             }
             else
             {
+               
+                string viewName = bl.GetGalleryViewName(id);
+                ViewBag.guid = id;
+                ViewBag.images = bl.GetImages(id);
+                return View("../Home/Gallery/1");
 
             } 
 
@@ -34,31 +38,15 @@ namespace pastephoto.Controllers
         {
             bool isSavedSuccessfully = true;
             string fName = "";
+            var bl = new Businesslogic();
             try
             {
                 foreach (string fileName in Request.Files)
                 {
                     HttpPostedFileBase file = Request.Files[fileName];
-                    //Save file content goes here
-                    fName = file.FileName;
-                    if (file != null && file.ContentLength > 0)
-                    {
-
-                        var originalDirectory = new DirectoryInfo(string.Format("{0}Images\\WallImages", Server.MapPath(@"\")));
-
-                        string pathString = System.IO.Path.Combine(originalDirectory.ToString(), "imagepath");
-
-                        var fileName1 = Path.GetFileName(file.FileName);
-
-                        bool isExists = System.IO.Directory.Exists(pathString);
-
-                        if (!isExists)
-                            System.IO.Directory.CreateDirectory(pathString);
-
-                        var path = string.Format("{0}\\{1}", pathString, file.FileName);
-                        file.SaveAs(path);
-
-                    }
+                    string mapPath = Server.MapPath(@"\");
+                    bl.SaveFileOnDrive(file, mapPath,id);
+                    bl.SaveFileInDb(file.FileName, id);
 
                 }
 

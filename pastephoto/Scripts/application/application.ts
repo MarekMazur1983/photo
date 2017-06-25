@@ -26,8 +26,8 @@ class Application {
         this.addCheckboxOnChange(this.cb_select, this.text_select);
         this.saveBtn.click(()=> { this.save(); });
     }
-    private getValues(): Settings {
-        var settings = new Settings();
+    private getValues(): Communication.Settings {
+        var settings = new Communication.Settings();
         settings.guid = this.guid;
         settings.gallery = this.select_gallery.find('option:selected').val()
         settings.select = parseInt(this.text_select.val());
@@ -76,17 +76,3 @@ class Application {
 
 }
 
-class Settings {
-    public guid: string;
-    public gallery: number;
-    public isPassword: boolean;
-    public password: string;
-    public isLifetime: boolean;
-    public lifetime: number;
-    public isWatermark: boolean;
-    public isSelect: boolean;
-    public select: number;
-    public isComments: boolean;
-    public isRatings: boolean;
-    public isFb: boolean;
-}

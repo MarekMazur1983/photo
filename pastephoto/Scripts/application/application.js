@@ -24,7 +24,7 @@ class Application {
         this.saveBtn.click(() => { this.save(); });
     }
     getValues() {
-        var settings = new Settings();
+        var settings = new Communication.Settings();
         settings.guid = this.guid;
         settings.gallery = this.select_gallery.find('option:selected').val();
         settings.select = parseInt(this.text_select.val());
@@ -65,7 +65,5 @@ class Application {
             }
         });
     }
-}
-class Settings {
 }
 //# sourceMappingURL=application.js.map

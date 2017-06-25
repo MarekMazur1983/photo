@@ -8,7 +8,6 @@
         <EntityTypeShape EntityType="pastephotoModel.gallery" Width="1.5" PointX="4.875" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="pastephotoModel.image" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="pastephotoModel.pastephoto" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <AssociationConnector Association="pastephotoModel.FK_image_pastephoto" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

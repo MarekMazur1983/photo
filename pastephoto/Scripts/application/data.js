@@ -8,5 +8,8 @@ var Communication;
         Status[Status["OK"] = 0] = "OK";
         Status[Status["ERROR"] = 1] = "ERROR";
     })(Status = Communication.Status || (Communication.Status = {}));
+    class Settings {
+    }
+    Communication.Settings = Settings;
 })(Communication || (Communication = {}));
 //# sourceMappingURL=data.js.map

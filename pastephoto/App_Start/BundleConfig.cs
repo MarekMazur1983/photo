@@ -28,6 +28,11 @@ namespace pastephoto
                       "~/Content/site.css",
                       "~/Content/dropzone.css",
                       "~/Content/basic.css"));
+      
+            bundles.Add(new ScriptBundle("~/bundles/galleria").Include(
+                     "~/Scripts/galleries/galleria/galleria-1.5.7.js"
+                   
+                      ));
         }
     }
 }

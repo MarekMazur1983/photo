@@ -30,7 +30,7 @@
     </nav>
     <div class="container">
         <div class="logo-img"><img src="~/Content/logo.png" /></div>
-        <form action="/upload/test" class="dropzone">
+        <form action="/upload/@ViewBag.guid" class="dropzone">
             <div class="fallback">
                 <input name="file" type="file" multiple />
             </div>
@@ -45,6 +45,9 @@
                         <option value="@ViewBag.gallery[i].id">@ViewBag.gallery[i].name</option>
                     }
                 </select>
+                <br />
+                <label>Gallery name:</label>
+                <input  id="text-name" type="text" class="form-control short50" placeholder="Name">
                 <div class="checkbox">
                     <label ><input id="cb-password" type="checkbox" value="">Add password</label>
                 </div>

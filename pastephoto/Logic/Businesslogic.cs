@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using pastephoto.Logic.Message;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace pastephoto.Logic
 {
@@ -61,5 +62,45 @@ namespace pastephoto.Logic
             return res;
          
         }
+        public void SaveFileOnDrive(HttpPostedFileBase file,string mapPath,string guid) 
+        {
+            var fName = file.FileName;
+            if (file != null && file.ContentLength > 0)
+            {
+
+                var originalDirectory = new DirectoryInfo(string.Format("{0}Images", mapPath));
+
+                string pathString = System.IO.Path.Combine(originalDirectory.ToString(), guid);
+
+                var fileName1 = Path.GetFileName(file.FileName);
+
+                bool isExists = System.IO.Directory.Exists(pathString);
+
+                if (!isExists)
+                    System.IO.Directory.CreateDirectory(pathString);
+
+                var path = string.Format("{0}\\{1}", pathString, file.FileName);
+                file.SaveAs(path);
+
+            }
+        }
+        public void SaveFileInDb(string fileName,string guid)
+        {
+            Models.Image img = new Models.Image(this.db);
+            img.Save(fileName, guid);
+        }
+        public string GetGalleryViewName(string guid)
+        {
+            var pp =this.db.pastephoto.Where(p => p.guid == guid).First();
+            Settings settingsObj = JsonConvert.DeserializeObject<Settings>(pp.settings);
+            return settingsObj.gallery;
+        }
+        public List<image> GetImages(string guid)
+        {
+            var img = new Models.Image(this.db);
+            return img.Fetch(guid);
+
+        }
+        //public string 
     }
 }

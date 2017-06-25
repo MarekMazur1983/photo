@@ -19,6 +19,7 @@ namespace pastephoto
                       "~/Scripts/respond.js"));
             bundles.Add(new ScriptBundle("~/bundles/application").Include(
                      "~/Scripts/application/application.js",
+                     "~/Scripts/application/comm.js",
                      "~/Scripts/dropzone/dropzone.js"
                       ));
             bundles.Add(new StyleBundle("~/Content/css").Include(

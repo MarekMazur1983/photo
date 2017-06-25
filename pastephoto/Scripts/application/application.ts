@@ -18,18 +18,19 @@ class Application {
     private cb_ratings: JQuery = $('#cb-ratings');
     private cb_fb: JQuery = $('#cb-ratings');
 
-    
     constructor() {
         this.settings_panel.slideDown(500);
         this.addCheckboxOnChange(this.cb_password, this.text_password);
         this.addCheckboxOnChange(this.cb_lifetime, this.text_lifetime);
         this.addCheckboxOnChange(this.cb_select, this.text_select);
     }
-
-
     private getValues() {
         var settings = new Settings();
-        // settings.gallery = this.select_gallery;
+        settings.gallery = this.select_gallery.find('option:selected').val()
+        settings.select = parseInt(this.text_select.val());
+        settings.password = this.text_password.val();
+        settings.isLifetime = this.cb_lifetime.is(':checked');
+        settings.lifetime = parseInt(this.text_lifetime.val());
         settings.isComments = this.cb_comments.is(':checked');
         settings.isFb = this.cb_fb.is(':checked');
         settings.isLifetime = this.cb_lifetime.is(':checked');
@@ -37,7 +38,6 @@ class Application {
         settings.isRatings = this.cb_ratings.is(':checked');
         settings.isWatermark = this.cb_watermark.is(':checked');
         settings.isSelect = this.cb_select.is(':checked');
-       
     }
 
     private addClickEvent(target: JQuery, callback: Function): void{
@@ -60,6 +60,7 @@ class Application {
 class Settings {
     public gallery: number;
     public isPassword: boolean;
+    public password: string;
     public isLifetime: boolean;
     public lifetime: number;
     public isWatermark: boolean;

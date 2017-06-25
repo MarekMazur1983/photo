@@ -22,7 +22,11 @@ class Application {
     }
     getValues() {
         var settings = new Settings();
-        // settings.gallery = this.select_gallery;
+        settings.gallery = this.select_gallery.find('option:selected').val();
+        settings.select = parseInt(this.text_select.val());
+        settings.password = this.text_password.val();
+        settings.isLifetime = this.cb_lifetime.is(':checked');
+        settings.lifetime = parseInt(this.text_lifetime.val());
         settings.isComments = this.cb_comments.is(':checked');
         settings.isFb = this.cb_fb.is(':checked');
         settings.isLifetime = this.cb_lifetime.is(':checked');

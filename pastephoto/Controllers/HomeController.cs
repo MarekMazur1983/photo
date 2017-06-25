@@ -13,6 +13,7 @@ namespace pastephoto.Controllers
     {
         public ActionResult Index(string id)
         {
+           
             if (id == null)
             {
                 Businesslogic bl = new Businesslogic();

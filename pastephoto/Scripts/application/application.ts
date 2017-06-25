@@ -29,7 +29,15 @@ class Application {
 
     private getValues() {
         var settings = new Settings();
-        settings.gallery = this.select_gallery;
+        // settings.gallery = this.select_gallery;
+        settings.isComments = this.cb_comments.is(':checked');
+        settings.isFb = this.cb_fb.is(':checked');
+        settings.isLifetime = this.cb_lifetime.is(':checked');
+        settings.isPassword = this.cb_password.is(':checked');
+        settings.isRatings = this.cb_ratings.is(':checked');
+        settings.isWatermark = this.cb_watermark.is(':checked');
+        settings.isSelect = this.cb_select.is(':checked');
+       
     }
 
     private addClickEvent(target: JQuery, callback: Function): void{

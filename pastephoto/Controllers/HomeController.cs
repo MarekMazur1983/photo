@@ -27,7 +27,8 @@ namespace pastephoto.Controllers
                 string viewName = bl.GetGalleryViewName(id);
                 ViewBag.guid = id;
                 ViewBag.images = bl.GetImages(id);
-                return View("../Home/Gallery/1");
+                ViewBag.settings = bl.GetSettings(id);
+                return View("../Home/Gallery/"+ viewName);
 
             } 
 

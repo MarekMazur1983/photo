@@ -7,6 +7,7 @@
 class Application {
     private settings_panel: JQuery = $("#settings-panel");
     private select_gallery: JQuery = $('#select-gallery');
+    private name: JQuery = $('#text-name');
     private cb_password: JQuery = $("#cb-password");
     private text_password: JQuery = $('#text-password');
     private cb_lifetime: JQuery = $('#cb-lifetime');
@@ -29,6 +30,7 @@ class Application {
     private getValues(): Communication.Settings {
         var settings = new Communication.Settings();
         settings.guid = this.guid;
+        settings.name = this.name.val();
         settings.gallery = this.select_gallery.find('option:selected').val()
         settings.select = parseInt(this.text_select.val());
         settings.password = this.text_password.val();
@@ -46,8 +48,6 @@ class Application {
     private checkValues() {
 
     }
-
-
     private save() {
         var values = this.getValues();
         this.checkValues();

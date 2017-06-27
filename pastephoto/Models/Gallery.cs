@@ -17,5 +17,6 @@ namespace pastephoto.Models
         {
             return this.db.gallery.Select(p => p).ToList();
         }
+       
     }
 }

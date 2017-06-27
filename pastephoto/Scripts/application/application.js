@@ -5,6 +5,7 @@ class Application {
     constructor() {
         this.settings_panel = $("#settings-panel");
         this.select_gallery = $('#select-gallery');
+        this.name = $('#text-name');
         this.cb_password = $("#cb-password");
         this.text_password = $('#text-password');
         this.cb_lifetime = $('#cb-lifetime');
@@ -26,6 +27,7 @@ class Application {
     getValues() {
         var settings = new Communication.Settings();
         settings.guid = this.guid;
+        settings.name = this.name.val();
         settings.gallery = this.select_gallery.find('option:selected').val();
         settings.select = parseInt(this.text_select.val());
         settings.password = this.text_password.val();

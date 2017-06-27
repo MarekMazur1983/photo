@@ -6,11 +6,12 @@
 }
 form {
     margin-top: 30px;
-    background: rgb(16, 16, 16) !important;
+    background: transparent !important;
     border: #316e84 dashed 3px !important;
     padding: 50px !important;
     text-align: center !important;
-    color: #b94a48 !important;
+    color: #635b5b !important;
+    font-weight: bold;
 }
 .dz-image{
     border-radius:5px !important;
@@ -21,6 +22,7 @@ form {
     padding: 20px!important;
     background-color: #2C2F34 !important;
     color: white !important;
+    opacity:0.9;
 } 
 #settings-panel input[type=checkbox] {
     transform: scale(1.5);

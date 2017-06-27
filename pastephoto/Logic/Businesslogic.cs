@@ -91,9 +91,17 @@ namespace pastephoto.Logic
         }
         public string GetGalleryViewName(string guid)
         {
-            var pp =this.db.pastephoto.Where(p => p.guid == guid).First();
+            Models.Pastephoto p = new Models.Pastephoto(this.db);
+            var pp = p.Fetch(guid);
             Settings settingsObj = JsonConvert.DeserializeObject<Settings>(pp.settings);
             return settingsObj.gallery;
+        }
+        public Settings GetSettings(string guid)
+        {
+            Models.Pastephoto p = new Models.Pastephoto(this.db);
+            var pp = p.Fetch(guid);
+            Settings settingsObj = JsonConvert.DeserializeObject<Settings>(pp.settings);
+            return settingsObj;
         }
         public List<image> GetImages(string guid)
         {

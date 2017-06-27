@@ -9,6 +9,7 @@
     }
     export class Settings {
         public guid: string;
+        public name: string;
         public gallery: number;
         public isPassword: boolean;
         public password: string;

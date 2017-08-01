@@ -19,6 +19,16 @@ namespace pastephoto
                 defaults: new { controller = "Home", action = "Save", id = UrlParameter.Optional }
             );
             routes.MapRoute(
+              name: "login",
+              url: "login",
+              defaults: new { controller = "Home", action = "Login", id = UrlParameter.Optional }
+          );
+            routes.MapRoute(
+             name: "update",
+             url: "update",
+             defaults: new { controller = "Home", action = "Update" }
+         );
+            routes.MapRoute(
                name: "upload",
                url: "upload/{id}",
                defaults: new { controller = "Home", action = "Uploadfile", id = UrlParameter.Optional }

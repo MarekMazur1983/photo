@@ -19,6 +19,7 @@ class Application {
     private cb_ratings: JQuery = $('#cb-ratings');
     private cb_fb: JQuery = $('#cb-ratings');
     private saveBtn: JQuery = $(".panel-footer button");
+    private progress: JQuery = $("#progress");
     private guid: string = $('body').attr('id');
     constructor() {
         this.settings_panel.slideDown(500);
@@ -51,11 +52,30 @@ class Application {
     private save() {
         var values = this.getValues();
         this.checkValues();
-        var res: Communication.Response = Communication.Comm.Send(values, false, Communication.URLCONST.SAVE, "html");
-        if (res.status == Communication.Status.OK) {
-            this.saveBtn.remove();
-            this.settings_panel.find(".panel-footer").append(this.getRedirectLink());
+        var interval;
+        if (values.isWatermark == true) {
+            this.progress.parent().show();
+            var move = 0;
+            var moveby = 1;
+            interval = setInterval(() => {
+                this.progress.css("width", move + "%");
+                move += moveby;
+                if (move > 80) {
+                    moveby = 0.1;
+                }
+            },200);
         }
+        Communication.Comm.Send(values, true, Communication.URLCONST.SAVE, "html", (res) => {
+            if (res.status == Communication.Status.OK) {
+                this.saveBtn.remove();
+                this.settings_panel.find(".panel-footer").append(this.getRedirectLink());
+                this.progress.css("width", "100%");
+
+                clearInterval(interval);
+            }
+
+        });
+        
     }
     private getRedirectLink(): JQuery {
         var link = $("<label>Link to your gallery: &nbsp;</label><a href='" + document.location.origin + "/" + this.guid + "'>" + document.location.origin + "/" + this.guid +"</a>")
@@ -73,6 +93,7 @@ class Application {
             }
         })
     }
+
 
 }
 

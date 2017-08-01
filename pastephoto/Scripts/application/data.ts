@@ -22,5 +22,13 @@
         public isRatings: boolean;
         public isFb: boolean;
     }
+    export class Image {
+        public id: number;
+        public filename: string;
+        public comment: string;
+        public selected: number;
+        public rate: number;
+        public guid: string;
+    }
  
 }

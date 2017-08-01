@@ -25,5 +25,14 @@ namespace pastephoto.Models
             List<image> imgs = db.image.Where(p => p.guid == guid).Select(p => p).ToList();
             return imgs;
         }
+        public void Update(image i)
+        {
+            var fetchedimage = this.db.image.Where(p => p.guid == i.guid && p.id == i.id).FirstOrDefault();
+            fetchedimage.rate = i.rate;
+            fetchedimage.selected = i.selected;
+            fetchedimage.comment = i.comment;
+           
+            this.db.SaveChanges();
+        }
     }
 }

@@ -23,6 +23,12 @@ namespace pastephoto
                      "~/Scripts/application/data.js",
                      "~/Scripts/dropzone/dropzone.js"
                       ));
+            bundles.Add(new ScriptBundle("~/bundles/login").Include(
+                   "~/Scripts/application/login.js",
+                   "~/Scripts/application/comm.js",
+                   "~/Scripts/application/data.js"
+                  
+                    ));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
@@ -32,6 +38,11 @@ namespace pastephoto
             bundles.Add(new ScriptBundle("~/bundles/galleria").Include(
                      "~/Scripts/galleries/galleria/galleria-1.5.7.js"
                    
+                      ));
+            bundles.Add(new ScriptBundle("~/bundles/basiclight").Include(
+                     "~/Scripts/application/basiclight.js",
+                       "~/Scripts/application/comm.js",
+                       "~/Scripts/application/data.js"
                       ));
         }
     }

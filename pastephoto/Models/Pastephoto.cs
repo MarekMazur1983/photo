@@ -16,7 +16,15 @@ namespace pastephoto.Models
         }
         public pastephoto Fetch(string guid)
         {
-            pastephoto pp =this.db.pastephoto.Where(p => p.guid == guid).First();
+            pastephoto pp =this.db.pastephoto.Where(p => p.guid == guid).FirstOrDefault();
+            if(pp.lifetime != null)
+            {
+
+                var days = (DateTime.Now - (DateTime)pp.added).TotalDays;
+
+                if (days > pp.lifetime)
+                    return null;
+            }
             return pp;
            
         }

@@ -6,27 +6,60 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
- 
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/galleria")
+    @Scripts.Render("~/bundles/basiclight")
+
     <script>
         $(document).ready(function () {
            
         })
     </script>
     <style>
+        .full-width{
+            width:99%;
+        }
+        .star-rating{
+            line-height: 37px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #999999
+        }
+        .star-select {
+            color: #0083e0 !important;
+        }
+        .star-picked {
+            color: #3979bb;
+            
+        }
+        .clicked {
+           background-color:#8BC34A !important;
+        }
+        .star-selected {
+            color: #53c8ef;
+        }
+        .nav > li > a {
+            position: relative;
+            display: block;
+            padding: 7px 9px;
+        }
+        .form-group {
+            margin-bottom: 0px !important; 
+        }
         .placeholder {
             height: 100%;
             margin-left: 0px;
-         
-            
+            margin-top: 48px;
         }
         .img-container {
             display: inline-grid;
-            border: 2px solid whitesmoke;
+          
             margin-top: 20px;
             height: 100%;
-            margin-left: 20px;
+            margin-left: 0.5%;
+            background-color: white;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
         }
        
         img{
@@ -34,7 +67,7 @@
             border: 2px solid whitesmoke;
             border-right: 4px solid whitesmoke;
            
-            max-height: 600px;
+            max-height: 35vh;
             margin-left: auto;
             margin-right:auto;
 
@@ -52,9 +85,9 @@
             border: 1px solid lightgrey;
             height: 3px;
         }
-        h1 {
+        h2 {
             text-align: left;
-            font-style: normal;
+            font-style: italic;
             font-family: -webkit-body;
             margin-left: 23px;
         }
@@ -92,6 +125,9 @@
             font-weight: bold;
             transition: 0.3s;
         }
+        body {
+            background-color: #f3f5f6;
+        }
 
             .close:hover,
             .close:focus {
@@ -99,6 +135,11 @@
                 text-decoration: none;
                 cursor: pointer;
             }
+        #ex1Slider{
+            float:right;
+            margin-top:15px;
+        }    
+
     </style>
     <script>
         $(document).ready(function () {
@@ -109,34 +150,71 @@
             var modalImg = document.getElementById("img01");
             
             imgs.click(function () {
-                modal.style.display = "block";
+                $(modal).slideDown(300);
+                //modal.style.display = "block";
                 modalImg.src = this.src;
                
             });
-
+            $(modal).click(function () {
+                $(modal).slideUp(300);
+            });
             // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close")[0];
 
             // When the user clicks on <span> (x), close the modal
             span.onclick = function () {
-                modal.style.display = "none";
-            }});
+                //modal.style.display = "none";
+                $(modal).slideUp(300);
+            }
+            var full = false;
+            $('#ex1').slider({
+                formatter: function (value) {
+                   
+                    $('.img-container img').css("max-height", value + 'vh');
+                    if (value == 100) {
+                        $('.img-container').addClass("full-width");
+                        full = true;
+                    }
+                    else {
+                        if (full == true) {
+                            $('.img-container').removeClass("full-width");
+                            full = false;
+                        }
+                        
+                    }
+                }
+            });
+
+
+          
+        });
+
     </script>
 </head>
 <body>
-<div style="background-color: whitesmoke;"><h1>@ViewBag.settings.name</h1></div>
     <div class="cross"></div>
+    <nav class="navbar navbar-inverse " style="position: fixed;top: 0px;width: 100%;border-radius: 0px;">
+        <div id="navbar" class="collapse navbar-collapse">
+            <img src="/Content/logo.png" style="height: 48px;border: 0px;float: left;">
+        <h2 style="margin-top: 8px;margin-bottom: 0px;color:whitesmoke;float:left">@ViewBag.settings.name</h2>
+            <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="10" data-slider-max="100" data-slider-step="1" data-slider-value="35" />    
+            <button id="show-selected-btn" class="btn btn-success" style="display:none;height: 32px;width: 139px;float: right;margin-top: 9px;margin-right: 39px;">show only selected</button>
+            </div><!--/.nav-collapse -->
+    </nav>
+
+<div id="image-data" data ="@Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.images)" settings="@Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.settings)"></div>
+
   <div class="placeholder">
         @for (var i = 0; i < ViewBag.images.Count; i++)
         {
               <div class="img-container"><img src="images/@ViewBag.guid/@ViewBag.images[i].filename">
-                  <div class="form-group">
+                  <div id="@ViewBag.images[i].id" class="form-group">
                       
                   </div>
              </div>
         }
   </div>
-    <div id="myModal" class="modal">
+    <div id="myModal" class="modal" style="z-index:2000">
 
         <!-- The Close Button -->
         <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>

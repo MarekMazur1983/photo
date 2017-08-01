@@ -1,7 +1,7 @@
 var Communication;
 (function (Communication) {
     class Comm {
-        static Send(message, modeasync, url, dataType) {
+        static Send(message, modeasync, url, dataType, callback) {
             var toJsonString = JSON.stringify(message);
             var res = null;
             $.ajax({
@@ -12,6 +12,9 @@ var Communication;
                 async: modeasync,
                 success: function (data) {
                     res = $.trim(data);
+                    if (callback != null) {
+                        callback(JSON.parse(res));
+                    }
                 },
                 error: function (data) {
                     console.log(data.responseText);
@@ -24,6 +27,8 @@ var Communication;
     class URLCONST {
     }
     URLCONST.SAVE = document.location.origin + "/save/";
+    URLCONST.LOGIN = document.location.origin + "/login/";
+    URLCONST.UPDATE = document.location.origin + "/update";
     Communication.URLCONST = URLCONST;
     ;
 })(Communication || (Communication = {}));

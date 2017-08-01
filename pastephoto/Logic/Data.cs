@@ -35,4 +35,9 @@ namespace pastephoto.Logic.Message
     {
         public static string INVALID_DATA = "INVALID_DATA";
     }
+    public class Password
+    {
+        public string password { get; set; }
+        public string guid { get; set; }
+    }
 }

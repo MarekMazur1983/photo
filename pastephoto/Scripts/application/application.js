@@ -17,6 +17,7 @@ class Application {
         this.cb_ratings = $('#cb-ratings');
         this.cb_fb = $('#cb-ratings');
         this.saveBtn = $(".panel-footer button");
+        this.progress = $("#progress");
         this.guid = $('body').attr('id');
         this.settings_panel.slideDown(500);
         this.addCheckboxOnChange(this.cb_password, this.text_password);
@@ -47,11 +48,27 @@ class Application {
     save() {
         var values = this.getValues();
         this.checkValues();
-        var res = Communication.Comm.Send(values, false, Communication.URLCONST.SAVE, "html");
-        if (res.status == Communication.Status.OK) {
-            this.saveBtn.remove();
-            this.settings_panel.find(".panel-footer").append(this.getRedirectLink());
+        var interval;
+        if (values.isWatermark == true) {
+            this.progress.parent().show();
+            var move = 0;
+            var moveby = 1;
+            interval = setInterval(() => {
+                this.progress.css("width", move + "%");
+                move += moveby;
+                if (move > 80) {
+                    moveby = 0.1;
+                }
+            }, 200);
         }
+        Communication.Comm.Send(values, true, Communication.URLCONST.SAVE, "html", (res) => {
+            if (res.status == Communication.Status.OK) {
+                this.saveBtn.remove();
+                this.settings_panel.find(".panel-footer").append(this.getRedirectLink());
+                this.progress.css("width", "100%");
+                clearInterval(interval);
+            }
+        });
     }
     getRedirectLink() {
         var link = $("<label>Link to your gallery: &nbsp;</label><a href='" + document.location.origin + "/" + this.guid + "'>" + document.location.origin + "/" + this.guid + "</a>");

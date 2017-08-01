@@ -11,5 +11,8 @@ var Communication;
     class Settings {
     }
     Communication.Settings = Settings;
+    class Image {
+    }
+    Communication.Image = Image;
 })(Communication || (Communication = {}));
 //# sourceMappingURL=data.js.map

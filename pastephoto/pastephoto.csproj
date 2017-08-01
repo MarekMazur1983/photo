@@ -206,6 +206,8 @@
     <Content Include="Content\basic.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\city.jpg" />
+    <Content Include="Content\copyright.png" />
     <Content Include="Content\dropzone.css" />
     <Content Include="Content\logo.png" />
     <Content Include="EFModel.Context.tt">
@@ -278,6 +280,9 @@
     <Content Include="Scripts\galleries\galleria\themes\fullscreen\up.gif" />
     <Content Include="Views\Home\Gallery\1.cshtml" />
     <Content Include="Views\Home\Gallery\2.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <TypeScriptCompile Include="Scripts\application\login.ts" />
+    <TypeScriptCompile Include="Scripts\application\basiclight.ts" />
     <TypeScriptCompile Include="Scripts\application\comm.ts" />
     <TypeScriptCompile Include="Scripts\application\data.ts" />
     <Content Include="Scripts\bootstrap.js" />
